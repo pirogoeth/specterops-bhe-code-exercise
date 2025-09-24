@@ -16,13 +16,18 @@ func TestNthPrime(t *testing.T) {
 	assert.Equal(t, int64(3581), sieve.NthPrime(500))
 	assert.Equal(t, int64(7793), sieve.NthPrime(986))
 	assert.Equal(t, int64(17393), sieve.NthPrime(2000))
-	assert.Equal(t, int64(15485867), sieve.NthPrime(1000000))
-	assert.Equal(t, int64(179424691), sieve.NthPrime(10000000))
-	//assert.Equal(t, int64(2038074751), sieve.NthPrime(100000000)) not required, just a fun challenge
+	// sorry for the silly number changes, easier for me to read :)
+	assert.Equal(t, int64(15_485_867), sieve.NthPrime(1_000_000))
+	assert.Equal(t, int64(179_424_691), sieve.NthPrime(10_000_000))
+	assert.Equal(t, int64(2_038_074_751), sieve.NthPrime(100_000_000))
 }
 
 func FuzzNthPrime(f *testing.F) {
 	sieve := NewSieve()
+
+	for i := range int64(10000) {
+		f.Add(i)
+	}
 
 	f.Fuzz(func(t *testing.T, n int64) {
 		if !big.NewInt(sieve.NthPrime(n)).ProbablyPrime(0) {
