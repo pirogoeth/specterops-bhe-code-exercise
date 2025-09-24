@@ -21,7 +21,7 @@ func Debug(items ...any) {
 // NewSieve creates an instance of the sieve impl without any caching
 func NewSieve() Sieve {
 	return &sieveImpl{
-		marked:            new(bitset.BitSet),
+		marked:            nil,
 		largestUpperBound: 0,
 	}
 }
